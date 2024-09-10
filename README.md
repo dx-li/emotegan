@@ -1,0 +1,1 @@
+Code for a WGAN implementation in JAX. Referenced DVD-GAN paper for architecture. Includes dataset of Twitch emotes. Run Trainer.py to train the model. 
