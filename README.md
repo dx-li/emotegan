@@ -1,1 +1,1 @@
-Code for a WGAN implementation in JAX and Equinox. Referenced DVD-GAN paper for architecture. Includes dataset of Twitch emotes. Run Trainer.py to train the model. Currently, I have not found a stable training configuration. Generated examples will be posted in the future.
+Code for a WGAN implementation in JAX and Equinox. Referenced DVD-GAN paper for architecture. Includes dataset of Twitch emotes. Run Trainer.py to train the model. Currently, I have not found a stable training configuration. Generated examples will be posted in the [GH page](dx-li.github.io/emotegan/).
