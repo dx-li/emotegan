@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic GIF Grid Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #gif-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .gif-item {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Generated GIFs from the GAN</h1>
+        <p>In the end I kept getting mode collapse and this experiment is costly to run, so it will have to end with these.</p>
+    </header>
+    
+    <div id="gif-grid"></div>
+    <div id="error-message"></div>
+
+    <script>
+        fetch('gifs.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const gifGrid = document.getElementById('gif-grid');
+                if (data.gifs && data.gifs.length > 0) {
+                    data.gifs.forEach(gif => {
+                        const img = document.createElement('img');
+                        img.src = `gifs/${gif}`;
+                        img.alt = gif;
+                        img.className = 'gif-item';
+                        gifGrid.appendChild(img);
+                    });
+                } else {
+                    throw new Error('No GIFs found in the data');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('error-message').textContent = `Error loading GIFs: ${error.message}. Please check the console for more details.`;
+            });
+    </script>
+</body>
+</html>
