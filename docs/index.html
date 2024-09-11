@@ -36,8 +36,9 @@
     
     <div id="gif-grid"></div>
     <div id="error-message"></div>
-
     <script>
+        const baseUrl = 'https://media.githubusercontent.com/media/dx-li/emotegan/main/docs/gifs/';
+        
         fetch('gifs.json')
             .then(response => {
                 if (!response.ok) {
@@ -50,7 +51,7 @@
                 if (data.gifs && data.gifs.length > 0) {
                     data.gifs.forEach(gif => {
                         const img = document.createElement('img');
-                        img.src = `gifs/${gif}`;
+                        img.src = `${baseUrl}${gif}`;
                         img.alt = gif;
                         img.className = 'gif-item';
                         gifGrid.appendChild(img);
